@@ -5,14 +5,20 @@
   "repository": "git@gitlab.com:arturnfranco/primo-challenge.git",
   "license": "MIT",
   "scripts": {
+    "deploy-dev": "serverless deploy -v",
+    "delete-dev": "serverless remove",
     "dev": "node src/index.js"
   },
   "dependencies": {
+    "aws-sdk": "2.904.0",
     "express": "4.17.1",
+    "express-fileupload": "1.2.1",
+    "serverless-dotenv-plugin": "3.9.0",
     "serverless-http": "2.7.0"
   },
   "devDependencies": {
     "serverless": "2.40.0",
+    "serverless-iam-roles-per-function": "3.1.0",
     "serverless-offline": "7.0.0"
   }
 }

@@ -11,6 +11,9 @@ dist/
 # Log files
 *.log
 
+# Env file
+.env
+
 # Package files
 *.jar
 
@@ -43,4 +46,5 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Serverless files
 .serverless

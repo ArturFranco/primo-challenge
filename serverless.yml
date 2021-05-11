@@ -1,17 +1,36 @@
 service: primo-api
 
+custom:
+  resourcesNamePrefix: ${self:service}-${self:provider.stage}
+
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: us-east-1
   lambdaHashingVersion: 20201221
+  environment:
+    BUCKET: ${self:custom.resourcesNamePrefix}-ebooks
+
+resources:
+  Resources:
+    PrimoEbooksBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.resourcesNamePrefix}-ebooks
 
 functions:
   app:
     handler: src/index.handler
     timeout: 30
     memorySize: 256
+    iamRoleStatementsName: ${self:custom.resourcesNamePrefix}-app-role
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - s3:*
+        Resource:
+          - arn:aws:s3:::${self:custom.resourcesNamePrefix}-ebooks
     events:
       - http:
           path: /
@@ -22,6 +41,8 @@ functions:
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
+  - serverless-iam-roles-per-function
 
 package:
   patterns:
