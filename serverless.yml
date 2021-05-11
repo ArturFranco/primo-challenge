@@ -1,0 +1,31 @@
+service: primo-api
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+
+functions:
+  app:
+    handler: src/index.handler
+    timeout: 30
+    memorySize: 256
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-offline
+
+package:
+  patterns:
+    - '!.gitignore'
+    - '!yarn.lock'
+    - '!.vscode/**'
+    - '!ymls/**'

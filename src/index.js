@@ -1,3 +1,4 @@
+const serverless = require('serverless-http');
 const express = require('express');
 const routes = require('./routes');
 
@@ -9,3 +10,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 app.listen(3000);
+
+module.exports.handler = serverless(app);
