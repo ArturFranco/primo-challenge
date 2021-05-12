@@ -15,6 +15,15 @@ The purpose of this document is to provide complete instructions Primo Ebooks AP
   - `yarn` (version 1.22.5) or `npm` (version 7.6.2)
   - `Serverless` (version 2.40.0)
 
+## Environment Variables
+
+- Create a `.env` file on project's root dir, following the example below:
+
+```
+ACCESS_KEY=<your-access-key>
+SECRET_KEY=<your-secret-key>
+```
+
 #### Environment Variables Values Explained
 
 ##### ACCESS_KEY
@@ -26,7 +35,6 @@ The purpose of this document is to provide complete instructions Primo Ebooks AP
 - Your AWS user's secret access key
 
 ### Execute Primo Ebooks API deploy
-
 
 - Go to the project's root dir via terminal.
 - Run one of these commands for install dependencies:
